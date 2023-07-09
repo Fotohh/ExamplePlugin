@@ -1,0 +1,6 @@
+name: ExamplePlugin
+main: me.fotoh.exampleplugin.ExamplePlugin
+version: 0.1
+commands:
+    test:
+        description: a test command
