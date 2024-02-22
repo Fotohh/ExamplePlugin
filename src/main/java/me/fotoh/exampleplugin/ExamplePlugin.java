@@ -1,5 +1,6 @@
 package me.fotoh.exampleplugin;
 
+import me.fotoh.exampleplugin.commands.ReloadCommand;
 import me.fotoh.exampleplugin.commands.TestCommand;
 import me.fotoh.exampleplugin.file.CustomConfig;
 import me.fotoh.exampleplugin.listeners.OnJoin;
@@ -17,16 +18,19 @@ public final class ExamplePlugin extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        if(!getDataFolder().exists()){
-            getDataFolder().mkdirs();
-        }
+        if(!getDataFolder().exists()) getDataFolder().mkdirs();
 
         config = new CustomConfig(this);
 
-        saveDefaultConfig();
+        if(config.getConfig().get("numbers.integer_number") == null) {
+            config.getConfig().set("numbers.integer_number", 10);
+            config.save();
+        }
+
         getLogger().info("The plugin has started!");
 
         getCommand("test").setExecutor(new TestCommand(this));
+        getCommand("reload-config").setExecutor(new ReloadCommand(this));
         new OnJoin(this);
     }
 

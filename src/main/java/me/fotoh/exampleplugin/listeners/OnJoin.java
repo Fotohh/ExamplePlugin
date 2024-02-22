@@ -14,7 +14,7 @@ public class OnJoin implements Listener {
 
     public OnJoin(ExamplePlugin plugin){
         this.plugin = plugin;
-        Bukkit.getServer().getPluginManager().registerEvents(new OnJoin(plugin), plugin);
+        Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
@@ -28,7 +28,7 @@ public class OnJoin implements Listener {
             plugin.getCustomConfig().save();
         }
 
-        player.setFlying(plugin.getCustomConfig().getConfig().getBoolean(CAN_FLY));
+        player.setAllowFlight(plugin.getCustomConfig().getConfig().getBoolean(CAN_FLY));
     }
 
     @EventHandler

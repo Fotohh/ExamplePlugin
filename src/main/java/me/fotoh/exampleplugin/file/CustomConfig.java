@@ -43,4 +43,13 @@ public class CustomConfig extends File {
             throw new RuntimeException(e);
         }
     }
+
+    public void reload() {
+        try {
+            yml.load(this);
+        } catch (IOException | InvalidConfigurationException e) {
+            throw new RuntimeException(e);
+        }
+        save();
+    }
 }
