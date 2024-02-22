@@ -20,10 +20,10 @@ public class TestCommand implements CommandExecutor {
 
         if(commandSender instanceof Player player){
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bThis is the test command!"));
+            player.sendMessage("Here is a number from the config: " + plugin.getCustomConfig().getConfig().getInt("numbers.integer_number"));
         }else{
             commandSender.sendMessage("Hi console!");
         }
-
         return true;
     }
 }
